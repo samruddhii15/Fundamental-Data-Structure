@@ -1,0 +1,35 @@
+def bubblesort(arr):
+    n=len(arr)
+    for pass1 in range(n-1):
+        for j in range(0,n-pass1-1):
+            if arr[j]>arr[j+1]:
+                arr[j],arr[j+1]=arr[j+1],arr[j]
+arr=[]
+num=int(input("Enter the number of students:"))
+for i in range (num):
+    per=float(input("Enter the percentage marks:"))
+    arr.append(per)
+bubblesort(arr)
+print("Sorted array is:")
+for i in range(len(arr)):
+    print (arr[i])
+
+
+
+def selectionsort(arr1):
+    for i in range(len(arr1)):
+        min=i
+        for j in range(i+1, len(arr1)):
+            if arr1[min]>arr1[j]:
+                min=j
+        if(min!=0):
+                arr1[i], arr1[min]=arr1[min], arr1[i]
+arr1=[]
+num=int(input("Enter the number of students:"))
+for i in range (num):
+    per=float(input("Enter the percentage marks:"))
+    arr1.append(per)
+selectionsort(arr1)
+print("sorted array")
+for i in range(len(arr1)):
+    print(arr1[i])
