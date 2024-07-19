@@ -1,0 +1,134 @@
+#include<iostream>
+#include<string>
+#define N 10
+using namespace std;
+string Q[10];
+int pr[10];
+int r=-1,f=-1,n;
+
+void enqueue(string data,int p)
+{
+    int i;
+    if((f==0)&&(r==-1))
+        cout<<"Queue is full";
+    else
+    {
+        if(f==-1)
+        {
+            f=r=0;
+            Q[r]=data;
+            pr[r]=p;
+        }
+        else
+        {
+            for(i=r;i>=f;i--)
+            {
+                if(p>pr[i])
+                {
+                    Q[i+1]=Q[i];
+                    pr[i+1]=pr[i];
+                }
+                else break;
+            }
+            Q[i+1]=data;
+            pr[i+1]=p;
+            r++;
+        }
+    
+    }
+}
+
+void print()
+{
+    int i;
+    for(i=f;i<=r;i++)
+    {
+        cout<<"Patients name::"<<Q[i];
+        
+        switch(pr[i])
+        {
+            case 1:
+            cout<<"\n\n\nPriority-'chekup'\n"<<endl;
+            break;
+            case 2:
+            cout<<"\nPriority-'non-serious'\n"<<endl;
+            break;
+            case 3:
+            cout<<"\nPriority-'serious'\n"<<endl;
+            break;
+            default:
+            cout<<"Priority not found";
+        }
+    }
+}
+ int dequeue()
+{
+    if(f==-1)
+    {
+        cout<<"Queue is empty!!"<<endl;
+    }
+    else
+    {
+        cout<<"Element deleted"<<Q[f]<<endl;
+        cout<<"Its priority"<<pr[f]<<endl;
+        if(f==r) r=f=-1;
+        else f++;
+    }
+    
+}
+
+int main()
+{
+    string data;
+    int opt,i,p;
+    //cout<<"Enter your choice::"<<endl;
+    //cin>>opt;
+    do
+    {
+        cout<<"\n1.Insert the data in Queue::"<<endl;
+        cout<<"\n2.Display the data in Queue::"<<endl;
+        cout<<"\n3.Delete the data in Queue::"<<endl;
+        cout<<"\n4.Exit!";
+        cout<<"\nEnter your choice::";
+        
+        cin>>opt;
+        switch(opt)
+        {
+            case 1:
+                cout<<"\nEnter the number of patients::\n"<<endl;
+                cin>>n;
+                
+                    for(i=0;i<=n;i++)
+                    {
+                        cout<<"\nEnter patients name::"<<endl;
+                        cin>>data;
+                        cout<<"\nEnter your priorities(3.serious,2.non-serious,1.General checkup)\n"<<endl;
+                        cin>>p;
+                        enqueue(data,p);
+                    }
+            break;
+            case 2:
+                print();
+                break;
+            case 3:
+                dequeue();
+            break;
+        }
+    }
+    while(opt!=0);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
